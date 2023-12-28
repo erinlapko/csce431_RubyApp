@@ -1,0 +1,107 @@
+
+
+<!DOCTYPE html>
+<html lang="en" style="font-size: inherit">
+<!--BOOTSTRAP: Latest compiled and minified CSS -->
+
+    <head>
+   
+    
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>TAMU EPSO</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <%= stylesheet_link_tag 'application.css' %>
+        <script src="https://kit.fontawesome.com/2e4cd61b32.js" crossorigin="anonymous"></script>
+    </head>
+    <body id="page-top" style="position: relative">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#page-top">TAMU Educational Psychology Student Organization</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><%= link_to "Members", href="/members", :class=>"nav-link" %></li>
+                        <li class="nav-item"><%= link_to "Meetings", href="/meetings", :class=>"nav-link" %></li>
+                        <li class="nav-item"><%= link_to "Attend Meeting", href="/attendances", :class=>"nav-link" %></li>
+                        <li class="nav-item"><%= link_to "Alumni", href="/alums", :class=>"nav-link" %></li>
+                        <div class="dropdown">
+                            <button class="dropbtn nav-link">
+                            <img src="<%=(current_admin.avatar_url)%>"  class="profile-pic" style="height: 2rem">
+                            </button>
+                            <div class="dropdown-content ">
+                            <a><%= link_to "Sign Out", destroy_admin_session_path, :class=>"nav-link" %></a>
+                            <a><%= link_to "Profile", profile_profile_path, :class=>"nav-link" %></a>
+                            <a><%= link_to "Help", help_index_path, :class=>"nav-link" %></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->  
+        
+       
+
+                <div class="container px-5" style="padding-top:7%">
+                    <h1 class="masthead-heading mb-0">Welcome, <%=current_admin.full_name %> </h1>
+                </div>
+        <!-- Content section 1-->
+     
+
+        <br><br>
+          <section>
+            <div class="container px-5">
+                <div class="row" style="padding-right:10%">
+                    <div class="col-4">
+                        <div class="card" >
+                               <i  style="color:black; font-size: 80px; padding: 5px" class="fa-solid fa-people-group"></i>
+                                <div class="card-body">
+                                    <%= link_to 'Register', '/members/new', :class=>"btn btn-primary"%>
+                                    <h5 class="card-title">New? Register as an EPSO member</h5>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-4">
+
+                        <div class="card" >
+                               <i  style="color:black; font-size: 80px; padding: 5px" class="fa-solid fa-user-clock"></i>
+                                <div class="card-body">
+                                    <%= link_to 'Attend Meeting', '/attendances/new', :class=>"btn btn-primary"%>
+                                    <h5 class="card-title">Once you have registered, you can attend a meeting</h5>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="col-4">
+                        <div class="card" >
+                               <i  style="color:black; font-size: 80px; padding: 5px" class="fa-solid fa-people-roof"></i>
+                                <div class="card-body">
+                                    <%= link_to 'Attendance List', '/attendances', :class=>"btn btn-primary"%>
+                                    <h5 class="card-title">Show all attendance history</h5>
+                                </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <br>
+        <br> 
+        <!-- Content section 1-->
+      
+        <!-- Footer-->
+     
+        <footer class="py-5 bg-black fixed-bottom">
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; TAMU EPSO 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

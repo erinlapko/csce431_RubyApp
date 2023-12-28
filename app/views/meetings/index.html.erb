@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html style="font-size: inherit">
+  <head>
+     <meta charset="utf-8" />
+
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+      <!-- Core theme CSS (includes Bootstrap)-->
+      <script src="https://kit.fontawesome.com/2e4cd61b32.js" crossorigin="anonymous"></script>
+    <title>EPSO Attendance List</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+ 
+    <!-- Warning !! ensure that "stylesheet_pack_tag" is used, line below -->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application.css' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+    <%= yield %>
+   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container px-5">
+          <a class="navbar-brand" href="/">TAMU Educational Psychology Student Organization</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item"><%= link_to "Members", href="/members", :class=>"nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Meetings", href="/meetings", :class=>"nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Attend Meeting", href="/attendances", :class=>"nav-link" %></li>
+                  <li class="nav-item"><%= link_to "Alumni", href="/alums", :class=>"nav-link" %></li>
+                  <div class="dropdown">
+                      <button class="dropbtn nav-link">
+                      <img src="<%=(current_admin.avatar_url)%>"  class="profile-pic" style="height: 2rem">
+                      </button>
+                    <div class="dropdown-content ">
+                      <a><%= link_to "Sign Out", destroy_admin_session_path, :class=>"nav-link" %></a>
+                      <a><%= link_to "Profile", profile_profile_path, :class=>"nav-link" %></a>
+                      <a><%= link_to "Help", help_index_path, :class=>"nav-link" %></a>
+                  </div>              
+                  </ul>         
+          </div>
+      </div>
+    </nav>
+
+<p id="notice"><%= notice %></p>
+<br> <br> <br> <br>
+
+<h1>Meetings</h1>
+
+<div class="container" id="table_container">
+<% if current_admin.email == "tamu.epsodev@gmail.com"%>
+  <%= link_to 'Create Meeting', '/meetings/new', :class=>"btn btn-primary"%>
+<% end %>
+
+<%= form_tag(meetings_path, method: :get) do %>
+  <p> Search by title</p>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+<br>
+<table style="width: 80%;" class="table table-striped table-hover table-bordered" id="meet-table">
+  <thead>
+    <tr>
+      <th width="10%"><%= link_to "Title", :sort => "title" %></th>
+      <th width="10%"><%= link_to "Time", :sort => "time" %></th>
+      <th width="50%">Description</th>
+      <th width="10%"><%= link_to "Points", :sort => "points" %></th>
+      <th colspan="3">Operation</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meetings.each do |meeting| %>
+      <tr>
+        <td><%= meeting.title %></td>
+        <td><%= meeting.time %></td>
+        <td><%= meeting.description %></td>
+        <td><%= meeting.points %></td>
+        <td><%= link_to 'Show', meeting %></td>
+
+        <% if current_admin.email == "tamu.epsodev@gmail.com"%>
+          <td>  <%= link_to 'Edit', edit_meeting_path(meeting) %></td>
+        <% end %>
+        <% if current_admin.email == "tamu.epsodev@gmail.com" %>
+          <td>  <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="pagination justify-content-center">
+<%= will_paginate @meetings %>
+</div>
+<p><em>Only admins can add/edit/delete meetings.</em></p>
+
+</div>
+<br>
+  <footer class="py-1 bg-black fixed-bottom">
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; TAMU EPSO 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

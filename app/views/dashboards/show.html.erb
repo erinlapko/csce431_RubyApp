@@ -1,0 +1,5 @@
+<% if current_admin.email == "tamu.epsodev@gmail.com" %>
+<%= render 'admin' %>
+<% else %>
+<%= render 'user' %>
+<% end %>

@@ -1,0 +1,34 @@
+h1 {   
+    text-align:center;
+  }
+
+.container{
+    text-align:center;
+}
+
+.table{
+    margin:0 auto;
+}
+#meet-table{
+  word-wrap: break-all;
+  table-layout: fixed;
+  word-break: break-all;
+  
+}
+
+#notice{
+  text-align: center;
+  color: red;
+}
+
+
+    
+  // Import Bootstrap v5  
+  @import "~bootstrap/scss/bootstrap"; 
+  /*
+  @import "bootstrap-icons/font/bootstrap-icons";
+  @font-face {
+    font-family: "bootstrap-icons";
+    src: font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff2") format("woff2"),
+      font-url("bootstrap-icons/font/fonts/bootstrap-icons.woff") format("woff");
+  } */

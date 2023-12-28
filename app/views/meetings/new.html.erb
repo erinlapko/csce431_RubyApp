@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html style="font-size: inherit">
+  <head>
+     <meta charset="utf-8" />
+
+      <!-- Google fonts-->
+      <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+      <!-- Core theme CSS (includes Bootstrap)-->
+      <script src="https://kit.fontawesome.com/2e4cd61b32.js" crossorigin="anonymous"></script>
+    <title>EPSO Attendance List</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+ 
+    <!-- Warning !! ensure that "stylesheet_pack_tag" is used, line below -->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application.css' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= yield %>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5">
+        <a class="navbar-brand" href="/">TAMU Educational Psychology Student Organization</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><%= link_to "Members", href="/members", :class=>"nav-link" %></li>
+                <li class="nav-item"><%= link_to "Meetings", href="/meetings", :class=>"nav-link" %></li>
+                <li class="nav-item"><%= link_to "Attend Meeting", href="/attendances", :class=>"nav-link" %></li>
+                <li class="nav-item"><%= link_to "Alumni", href="/alums", :class=>"nav-link" %></li>
+                <li class="nav-item"><%= link_to "Sign Out", destroy_admin_session_path, :class=>"nav-link" %></li>
+            </ul>         
+        </div>
+    </div>
+  </nav>
+<br> <br> <br> <br>
+<div class="container" id="table_container"> 
+<h1>Add Meeting</h1>
+
+<%= render 'form', meeting: @meeting %>
+
+<%= link_to 'Back', meetings_path %>
+
+
+
+</div>
+</body>
+</html>
